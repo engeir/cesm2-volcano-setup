@@ -37,8 +37,8 @@ cd ./cyclic2interp/
 
 When setting up a model run, the only important file to fix is `user_nl_cam`. We change
 the forcing type to `INTERP_MISSING_MONTHS` and use our new files from running the
-`cycle2interp` strategy [above](#creating-interpmissingmonths-simulations). The last SO2
-input file is one created from the [Creating source files](#creating-source-files)
+`cycle2interp` strategy [above](#creating-interp_missing_months-simulations). The last
+SO2 input file is one created from the [Creating source files](#creating-source-files)
 procedure.
 
 ### BWma1850

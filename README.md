@@ -1,2 +1,63 @@
-# cesm2-volcano-setup
-Recipe to initialise CESM2 to run simulations of volcanic eruptions in a steady climate.
+# CESM2 Volcano Setup
+
+> Recipe to initialise CESM2 to run simulations of volcanic eruptions in a steady
+> climate.
+
+## Creating source files
+
+To create the volcanic forcing input files, move into each directory inside
+[forcing-files](./forcing-files/) and run the shell script.
+
+```bash
+cd ./forcing-files/
+cd ./small/
+./make-ens1-forcing.sh
+cd ..
+# And so on ...
+```
+
+## Creating "INTERP_MISSING_MONTHS" simulations
+
+The file (and other files listed in the `ext_frc_specifier` configuration in the
+`user_nl_cam` file)
+`H2O_emission_CH4_oxidationx2_elev_3DmonthlyL70_1850climoCMIP6piControl001_y21-50avg_1.9x2.5_c190308.nc`
+contain only data for the year 1850, so we must shift the time to year 1 and year 9999:
+([forum hint])
+
+This is done using the scripts in the [cyclic2interp](./cyclic2interp/) directory. Let
+us say `input-file.nc` is an input file that should be used in the `CYCLE` CESM2
+configuration, but we want to use `INTERP_MISSING_MONTHS`. We then do
+
+```bash
+cd ./cyclic2interp/
+./cycle2interp.sh input-file.nc
+```
+
+## Updating user_nl_cam
+
+When setting up a model run, the only important file to fix is `user_nl_cam`. We change
+the forcing type to `INTERP_MISSING_MONTHS` and use our new files from running the
+`cycle2interp` strategy [above](#creating-interpmissingmonths-simulations). The last SO2
+input file is one created from the [Creating source files](#creating-source-files)
+procedure.
+
+### BWma1850
+
+```bash
+ext_frc_cycle_yr       = -999
+ext_frc_specifier      = 'bc_a4 -> /cluster/projects/nn9817k/cesm/input-data/cyclic2interp_missing_months/BWma1850/CMIP6_emissions_1750_2015_2deg/emissions-cmip6_bc_a4_aircraft_vertical_1750-2015_1.9x2.5_c20170608.nc',
+        'NO2 -> /cluster/projects/nn9817k/cesm/input-data/cyclic2interp_missing_months/BWma1850/CMIP6_emissions_1750_2015_2deg/emissions-cmip6_NO2_aircraft_vertical_1750-2015_1.9x2.5_c20170608.nc'
+        'num_a1 -> /cluster/projects/nn9817k/cesm/input-data/cyclic2interp_missing_months/BWma1850/CMIP6_emissions_1750_2015_2deg/emissions-cmip6_num_so4_a1_anthro-ene_vertical_1750-2015_1.9x2.5_c20170616.nc',
+        'num_a1 -> /cluster/projects/nn9817k/cesm/input-data/cyclic2interp_missing_months/BWma1850/CMIP6_emissions_1750_2015_2deg/emissions-cmip6_num_a1_so4_contvolcano_vertical_850-5000_1.9x2.5_c20190417.nc',
+        'num_a2 -> /cluster/projects/nn9817k/cesm/input-data/cyclic2interp_missing_months/BWma1850/CMIP6_emissions_1750_2015_2deg/emissions-cmip6_num_a2_so4_contvolcano_vertical_850-5000_1.9x2.5_c20190417.nc',
+        'num_a4 -> /cluster/projects/nn9817k/cesm/input-data/cyclic2interp_missing_months/BWma1850/CMIP6_emissions_1750_2015_2deg/emissions-cmip6_num_bc_a4_aircraft_vertical_1750-2015_1.9x2.5_c20170608.nc',
+        'SO2 -> /cluster/projects/nn9817k/cesm/input-data/cyclic2interp_missing_months/BWma1850/CMIP6_emissions_1750_2015_2deg/emissions-cmip6_SO2_aircraft_vertical_1750-2015_1.9x2.5_c20170608.nc',
+        'SO2 -> /cluster/projects/nn9817k/cesm/input-data/cyclic2interp_missing_months/BWma1850/CMIP6_emissions_1750_2015_2deg/emissions-cmip6_SO2_contvolcano_vertical_850-5000_1.9x2.5_c20190417.nc',
+        'SO2 -> /cluster/projects/nn9817k/cesm/input-data/historic-forcing/ensemble-runs/medium/ens1/VolcanEESMv3.11Enger_SO2_850-2016_Zreduc_2deg_c20240102-151625.nc',
+        'so4_a1 -> /cluster/projects/nn9817k/cesm/input-data/cyclic2interp_missing_months/BWma1850/CMIP6_emissions_1750_2015_2deg/emissions-cmip6_so4_a1_anthro-ene_vertical_1750-2015_1.9x2.5_c20170616.nc',
+        'so4_a1 -> /cluster/projects/nn9817k/cesm/input-data/cyclic2interp_missing_months/BWma1850/CMIP6_emissions_1750_2015_2deg/emissions-cmip6_so4_a1_contvolcano_vertical_850-5000_1.9x2.5_c20190417.nc',
+        'so4_a2 -> /cluster/projects/nn9817k/cesm/input-data/cyclic2interp_missing_months/BWma1850/CMIP6_emissions_1750_2015_2deg/emissions-cmip6_so4_a2_contvolcano_vertical_850-5000_1.9x2.5_c20190417.nc'
+ext_frc_type       = 'INTERP_MISSING_MONTHS'
+```
+
+[forum hint]: https://sourceforge.net/p/nco/discussion/9830/thread/8f0abe56/

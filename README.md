@@ -5,6 +5,9 @@
 
 ## Creating source files
 
+> Depends on [volcano-cooking](https://github.com/engeir/volcano-cooking/) and
+> [NCL](https://www.ncl.ucar.edu/index.shtml).
+
 To create the volcanic forcing input files, move into each directory inside
 [forcing-files](./forcing-files/) and run the shell script.
 
@@ -18,9 +21,11 @@ cd ..
 
 ## Creating "INTERP_MISSING_MONTHS" simulations
 
-The file (and other files listed in the `ext_frc_specifier` configuration in the
-`user_nl_cam` file)
-`H2O_emission_CH4_oxidationx2_elev_3DmonthlyL70_1850climoCMIP6piControl001_y21-50avg_1.9x2.5_c190308.nc`
+> Depends on [netCDF4](https://pypi.org/project/netCDF4/) and
+> [NCO](http://research.jisao.washington.edu/data_sets/nco/).
+
+The files listed in the `ext_frc_specifier` configuration in the `user_nl_cam` file
+(e.g., [`emissions-cmip6_bc_a4_aircraft_vertical_1750-2015_1.9x2.5_c20170608.nc`])
 contain only data for the year 1850, so we must shift the time to year 1 and year 9999:
 ([forum hint])
 
@@ -61,3 +66,4 @@ ext_frc_type       = 'INTERP_MISSING_MONTHS'
 ```
 
 [forum hint]: https://sourceforge.net/p/nco/discussion/9830/thread/8f0abe56/
+[`emissions-cmip6_bc_a4_aircraft_vertical_1750-2015_1.9x2.5_c20170608.nc`]: https://svn-ccsm-inputdata.cgd.ucar.edu/trunk/inputdata/atm/cam/chem/emis/CMIP6_emissions_1750_2015_2deg/emissions-cmip6_so4_a1_anthro-ene_vertical_1750-2015_1.9x2.5_c20170616.nc

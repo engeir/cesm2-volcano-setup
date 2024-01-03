@@ -62,7 +62,7 @@ else
     ncks --mk_rec_dmn time 1.nc 1_un.nc
     ncks --mk_rec_dmn time 9999.nc 9999_un.nc
 fi
-  
+
 # Make a backup and save to the original name.
 mv "$1" "$1".bak
 ncrcat -h 1_un.nc 9999_un.nc "$1"

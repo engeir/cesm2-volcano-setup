@@ -3,9 +3,9 @@
 # This script assumes the python CLI `volcano-cooking` is installed. The current
 # installed version is
 #   $ volcano-cooking --version
-#   0.9.2
+#   0.12.0
 
-if [[ $(volcano-cooking --version) != "volcano-cooking, version 0.9.2" ]]; then
+if [[ $(volcano-cooking --version) != "volcano-cooking, version 0.12.0" ]]; then
     echo "This is not the correct volcano-cooking version"
     exit 1
 fi

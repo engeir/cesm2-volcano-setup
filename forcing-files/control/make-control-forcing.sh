@@ -6,7 +6,7 @@
 #   0.9.1
 
 if [[ $(volcano-cooking --version) != "volcano-cooking, version 0.9.2" ]]; then
-    echo "This is not the correct volcano-cooking version, mate."
+    echo "This is not the correct volcano-cooking version"
     exit 1
 fi
 

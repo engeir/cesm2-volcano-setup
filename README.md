@@ -26,8 +26,8 @@ cd ..
 
 The files listed in the `ext_frc_specifier` configuration in the `user_nl_cam` file
 (e.g., [`emissions-cmip6_bc_a4_aircraft_vertical_1750-2015_1.9x2.5_c20170608.nc`])
-contain only data for the year 1850, so we must shift the time to year 1 and year 9999:
-([forum hint])
+contain only data for the year 1850, so we must shift the time to year 1 and year 9999 
+([forum hint]).
 
 This is done using the scripts in the [cyclic2interp](./cyclic2interp/) directory. Let
 us say `input-file.nc` is an input file that should be used in the `CYCLE` CESM2

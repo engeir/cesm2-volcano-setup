@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/engeir/cesm2-volcano-setup/compare/v0.2.0...v0.2.1) (2024-09-04)
+
+
+### Documentation
+
+* **README:** add zenodo DOI and latest release version ([ef8444d](https://github.com/engeir/cesm2-volcano-setup/commit/ef8444d2a52a27b82b4fdf4c7e4fc496cbb42e54))
+
 ## [0.2.0](https://github.com/engeir/cesm2-volcano-setup/compare/v0.1.0...v0.2.0) (2024-09-04)
 
 

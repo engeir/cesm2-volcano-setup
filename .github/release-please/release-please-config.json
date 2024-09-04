@@ -5,7 +5,7 @@
       "include-component-in-tag": false,
       "release-type": "simple",
       "extra-files": ["README.md"],
-      "package-name": "CESM2 Volcano Setup",
+      "package-name": "cesm2-volcano-setup",
       "changelog-path": "CHANGELOG.md"
     }
   },

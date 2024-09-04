@@ -1,7 +1,7 @@
 # CESM2 Volcano Setup
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13683168.svg)](https://zenodo.org/doi/10.5281/zenodo.13683168)
-<sup>Latest version: v0.2.0</sup> <!-- x-release-please-version -->
+<sup>Latest version: v0.2.1</sup> <!-- x-release-please-version -->
 
 > Recipe to initialise CESM2 to run simulations of volcanic eruptions in a steady
 > climate.

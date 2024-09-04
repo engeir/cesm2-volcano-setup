@@ -26,7 +26,7 @@ cd ..
 
 The files listed in the `ext_frc_specifier` configuration in the `user_nl_cam` file
 (e.g., [`emissions-cmip6_bc_a4_aircraft_vertical_1750-2015_1.9x2.5_c20170608.nc`])
-contain only data for the year 1850, so we must shift the time to year 1 and year 9999 
+contain only data for the year 1850, so we must shift the time to year 1 and year 9999
 ([forum hint]).
 
 This is done using the scripts in the [cyclic2interp](./cyclic2interp/) directory. Let
@@ -38,7 +38,7 @@ cd ./cyclic2interp/
 ./cycle2interp.sh input-file.nc
 ```
 
-## Updating user_nl_cam
+## Updating `user_nl_cam`
 
 When setting up a model run, the only important file to fix is `user_nl_cam`. We change
 the forcing type to `INTERP_MISSING_MONTHS` and use our new files from running the
@@ -46,9 +46,9 @@ the forcing type to `INTERP_MISSING_MONTHS` and use our new files from running t
 SO2 input file is one created from the [Creating source files](#creating-source-files)
 procedure.
 
-### BWma1850
+### `BWma1850`
 
-```bash
+```txt
 ext_frc_cycle_yr       = -999
 ext_frc_specifier      = 'bc_a4 -> /cluster/projects/nn9817k/cesm/input-data/cyclic2interp_missing_months/BWma1850/CMIP6_emissions_1750_2015_2deg/emissions-cmip6_bc_a4_aircraft_vertical_1750-2015_1.9x2.5_c20170608.nc',
         'NO2 -> /cluster/projects/nn9817k/cesm/input-data/cyclic2interp_missing_months/BWma1850/CMIP6_emissions_1750_2015_2deg/emissions-cmip6_NO2_aircraft_vertical_1750-2015_1.9x2.5_c20170608.nc'
